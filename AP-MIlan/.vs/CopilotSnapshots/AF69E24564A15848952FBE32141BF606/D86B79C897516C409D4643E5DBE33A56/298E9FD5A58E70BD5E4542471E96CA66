@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Accessible Academic Poster</title>
+	<style>
+		:root {
+			--primary-color: #0056b3;
+			--text-color: #333;
+			--bg-color: #ffffff;
+			--abstract-bg: #f8f9fa;
+		}
+
+		body { 
+			font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+			line-height: 1.6; 
+			max-width: 900px; 
+			margin: 0 auto; 
+			padding: 2em; 
+			color: var(--text-color); 
+			background-color: var(--bg-color);
+		}
+
+		h1, h2, h3 { 
+			color: var(--primary-color); 
+			margin-top: 1.5em;
+		}
+
+		h1 { font-size: 2.2em; border-bottom: 2px solid var(--primary-color); padding-bottom: 0.2em; margin-top: 0; }
+
+		.authors { margin-bottom: 2em; }
+		.author-info { margin: 0.2em 0; font-size: 1.1em; }
+
+		.logos {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 5px; /* Reduced gap between logos */
+			margin-bottom: 1em;
+			align-items: center;
+			justify-content: flex-start; /* Ensure they align to the left */
+		}
+		.logos img {
+			max-height: 60px; /* Make logos slightly smaller to help with spacing */
+			max-width: 150px;
+			object-fit: contain; /* Ensure they don't stretch weirdly */
+		}
+
+		.keywords { margin-top: 1em; font-style: italic; }
+
+		.abstract { 
+			background: var(--abstract-bg); 
+			padding: 1.5em; 
+			border-left: 5px solid var(--primary-color); 
+			margin: 2em 0; 
+			border-radius: 0 4px 4px 0;
+		}
+		.abstract h2 { margin-top: 0; }
+
+		section { margin-bottom: 2.5em; }
+
+		ul, ol { padding-left: 2em; }
+		li { margin-bottom: 0.5em; }
+
+		figure { 
+			margin: 2em 0; 
+			padding: 1em; 
+			background: var(--abstract-bg); 
+			border: 1px solid #dee2e6; 
+			border-radius: 4px;
+		}
+
+		img { 
+			max-width: 100%; 
+			height: auto; 
+			display: block; 
+			margin: 0 auto;
+		}
+
+		figcaption { 
+			font-size: 0.9em; 
+			color: #555; 
+			text-align: center; 
+			margin-top: 1em; 
+			font-weight: 600;
+		}
+
+		/* High contrast focus outline for accessibility */
+		*:focus-visible { outline: 3px solid var(--primary-color); outline-offset: 2px; }
+
+		.error-message { 
+			background: #ffebee; 
+			color: #c62828; 
+			padding: 1em; 
+			border-left: 5px solid #c62828; 
+			font-weight: bold;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<main id="poster-container" aria-live="polite">
+		<p>Loading accessible poster data...</p>
+		<div id="error-msg" class="error-message" role="alert">
+			<p>Error loading XML file.</p>
+			<p>If you are opening this HTML file directly from your file system (a file:// URL), your browser's security blocks loading local XML files. Please run a local web server (e.g., using "Live Server" extension in Visual Studio or python -m http.server).</p>
+		</div>
+	</main>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', loadPoster);
+
+		async function loadPoster() {
+			try {
+				// Fetch the XML file
+				const response = await fetch('AccessibleAcademicPoster.xml');
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+
+				const xmlText = await response.text();
+
+				// Parse it into a DOM Document
+				const parser = new DOMParser();
+				const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+				window.lastXmlDoc = xmlDoc; // Save for error reporting
+
+				// Check for XML parsing errors
+				if (xmlDoc.querySelector('parsererror')) {
+					throw new Error("Error parsing XML content");
+				}
+
+				renderPoster(xmlDoc);
+
+			} catch (error) {
+				console.error("Failed to load poster:", error);
+				const errorBox = document.getElementById('error-msg');
+				errorBox.style.display = 'block';
+
+				// Get more detailed parser error text
+				let parserErrorText = "Unknown error";
+				if (error.message === "Error parsing XML content" && window.lastXmlDoc) {
+					const errNode = window.lastXmlDoc.querySelector('parsererror');
+					if (errNode) parserErrorText = errNode.textContent;
+				}
+
+				errorBox.innerHTML = `
+					<p><strong>Error loading/parsing XML file:</strong> ${error.message}</p>
+					<p><strong>Details:</strong> ${parserErrorText}</p>
+					<p>Make sure you are accessing this file via localhost (e.g., http://localhost:8000) and not via a file:// URL.</p>
+				`;
+			}
+		}
+
+		function extractText(parent, selector) {
+			const el = parent.querySelector(selector);
+			return el ? el.textContent : '';
+		}
+
+		function renderPoster(xml) {
+			const container = document.getElementById('poster-container');
+			let html = '';
+
+			// Handle Metadata
+			const title = extractText(xml, 'metadata > title');
+			document.title = title || 'Accessible Academic Poster';
+			html += `<h1>${title}</h1>`;
+
+			const authors = xml.querySelectorAll('metadata > authors > author');
+			if (authors.length > 0) {
+				html += '<div class="authors">';
+				authors.forEach(author => {
+					const authorText = author.textContent.trim();
+					const firstCommaIndex = authorText.indexOf(',');
+
+					let authorHtml = '';
+					if (firstCommaIndex !== -1) {
+						// Extract the name (everything before the first comma)
+						const name = authorText.substring(0, firstCommaIndex).trim();
+						// Extract the rest of the text (affiliation, email, etc.)
+						const rest = authorText.substring(firstCommaIndex + 1).trim();
+						authorHtml = `<strong>${name}</strong>, ${rest}`;
+					} else {
+						// Fallback if there happens to be no comma
+						authorHtml = `<strong>${authorText}</strong>`;
+					}
+
+					html += `<div class="author-info">
+						${authorHtml}
+					</div>`;
+				});
+				html += '</div>';
+			}
+
+			const logos = xml.querySelectorAll('metadata > logos > logo');
+			if (logos.length > 0) {
+				html += '<div class="logos" aria-label="Affiliation and sponsorship logos">';
+				logos.forEach(logo => {
+					const src = logo.getAttribute('src');
+					const alt = logo.getAttribute('alt') || 'Logo';
+					html += `<img src="${src}" alt="${alt}" />`;
+				});
+				html += '</div>';
+			}
+
+			const keywords = Array.from(xml.querySelectorAll('metadata > keywords > keyword'))
+								  .map(k => k.textContent).join(', ');
+			if (keywords) {
+				html += `<div class="keywords"><strong>Keywords:</strong> ${keywords}</div>`;
+			}
+
+			// Handle Abstract
+			const abstract = xml.querySelector('abstract');
+			if (abstract) {
+				html += `
+				<section class="abstract" aria-label="Abstract">
+					<h2>${extractText(abstract, 'heading')}</h2>
+					<p>${extractText(abstract, 'paragraph')}</p>
+				</section>`;
+			}
+
+			// Handle Content Sections
+			const content = xml.querySelector('content');
+			if (content) {
+				const sections = content.querySelectorAll('section');
+				sections.forEach(sec => {
+					const id = sec.getAttribute('id') || '';
+					html += `<section id="${id}">`;
+
+					// Parse section children in order
+					Array.from(sec.children).forEach(child => {
+						if (child.tagName === 'heading') {
+							const level = child.getAttribute('level') || '2';
+							html += `<h${level}>${child.innerHTML}</h${level}>`;
+						} 
+						else if (child.tagName === 'paragraph') {
+							html += `<p>${child.innerHTML}</p>`;
+						} 
+						else if (child.tagName === 'list') {
+							const listType = child.getAttribute('type') === 'ordered' ? 'ol' : 'ul';
+							html += `<${listType}>`;
+							child.querySelectorAll('item').forEach(item => {
+								html += `<li>${item.innerHTML}</li>`;
+							});
+							html += `</${listType}>`;
+						}
+						else if (child.tagName === 'figure') {
+							const figId = child.getAttribute('id') || '';
+							const img = child.querySelector('image');
+							const caption = extractText(child, 'caption');
+
+							html += `<figure id="${figId}">`;
+							if (img) {
+								html += `<img src="${img.getAttribute('src')}" alt="${img.getAttribute('alt')}">`;
+							}
+							if (caption) {
+								html += `<figcaption>${caption}</figcaption>`;
+							}
+							html += `</figure>`;
+						}
+					});
+
+					html += `</section>`;
+				});
+			}
+
+			// Handle References
+			const references = xml.querySelector('references');
+			if (references) {
+				html += `<section id="references" aria-label="References">
+					<h2>${extractText(references, 'heading')}</h2>`;
+
+				const list = references.querySelector('list');
+				if (list) {
+					const listType = list.getAttribute('type') === 'ordered' ? 'ol' : 'ul';
+					html += `<${listType}>`;
+					list.querySelectorAll('item').forEach(item => {
+						html += `<li>${item.textContent}</li>`;
+					});
+					html += `</${listType}>`;
+				}
+				html += `</section>`;
+			}
+
+			// Inject rendered HTML
+			container.innerHTML = html;
+		}
+	</script>
+</body>
+</html>

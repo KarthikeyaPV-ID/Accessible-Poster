@@ -1,0 +1,3 @@
+Steps to preview the html file:
+run python -m http.server
+navigate to http://localhost:8000/poster.html (or whichever port is provided). -- replace poster.html with the name of the html file you want to preview
