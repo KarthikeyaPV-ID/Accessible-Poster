@@ -138,7 +138,7 @@
 		async function loadPoster() {
 			try {
 				// Fetch the XML file
-				const response = await fetch('AccessibleAcademicPoster.xml');
+				const response = await fetch('./AccessibleAcademicPoster.xml');
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
