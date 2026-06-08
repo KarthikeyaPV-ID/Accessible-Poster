@@ -15,12 +15,18 @@
 		</logos>
 	</metadata>
 
-	<abstract><heading level="2">Abstract</heading>
-<paragraph> This research focuses on how to create inclusive and engaging audio-visual experiences for cultural heritage archives. By examining the current barriers to accessing and exploring large audi-visual collections and identify how these barriers limit meaningful engagement with cultural content Building on these insights, the project aims to develop and evaluate approaches to accessiblity leveraging Artificial Intelligence (AI) and Immersive media technologies to support richer forms of discovery, navigation and interpretation. By combining participarty design methods with technical innovation, this research aims to provide both practical guidelines and novel concepts that demonstrate how digital archives can be designed with universal access fundamentally embedded within the interface rather than an afterthought.</paragraph></abstract>
+	<abstract><heading level="2">Abstract</heading><!--<paragraph> This research focuses on how to create inclusive and engaging audio-visual experiences for cultural heritage archives. By examining the current barriers to accessing and exploring large audi-visual collections and identify how these barriers limit meaningful engagement with cultural content Building on these insights, the project aims to develop and evaluate approaches to accessiblity leveraging Artificial Intelligence (AI) and Immersive media technologies to support richer forms of discovery, navigation and interpretation. By combining participarty design methods with technical innovation, this research aims to provide both practical guidelines and novel concepts that demonstrate how digital archives can be designed with universal access fundamentally embedded within the interface rather than an afterthought.</paragraph>-->
+<list><item>This research focuses on creating inclusive and engaging experiences for cultural heritage archives for BLV (Blind and Low Vision) and DHH (Deaf and Hard of Hearing) people</item>
+<item>We will examine barriers to meaningful engagement with large audio-visual collections along with the communities through co-design approaches</item>
+<item>Collaboratively develop and evaluate accessibility approachers using AI and immersive technologies.</item>
+</list>
+	</abstract>
 
 	<content>
-		<section id="background"><heading level="2">Background</heading>
-<paragraph>Digitisation has a massive impact on the way heritage material is preserved, accessed and experienced. In the case of audio-visual collections from the Netherlands Institue of Sound &amp; Vision, a large portion of the collection that was stored on fragile carriers such as film, magnetic tape, and video tapes has been digitised over the past fifteen years and can now be accessed remotely. The Sound &amp; Vision collection chronicles historical events and illuminates the intricate relationship between media, society, and technological progress. Access to this collection is essential for citizens with disabilities to engage with their cultural heritage to foster a more inclusive society.</paragraph>
+		<section id="background"><heading level="2">Background</heading><!--<paragraph>Digitisation has a massive impact on the way heritage material is preserved, accessed and experienced. In the case of audio-visual collections from the Netherlands Institue of Sound &amp; Vision, a large portion of the collection that was stored on fragile carriers such as film, magnetic tape, and video tapes has been digitised over the past fifteen years and can now be accessed remotely. The Sound &amp; Vision collection chronicles historical events and illuminates the intricate relationship between media, society, and technological progress. Access to this collection is essential for citizens with disabilities to engage with their cultural heritage to foster a more inclusive society.</paragraph>-->
+<list><item>At the Netherlands Institute of Sound &amp; Vision, much of the audio-visual collection has been digitised from fragile carriers such as film, magnetic tape, and videotape</item>
+<item>Digitisation is transforming how heritage material is preserved, accessed, and experienced</item>
+<item>The collection documents historical events and shows the link between media, society, and technological progress. Therefore access to these collections are essential to foster an inclusive society</item></list>
 			<figure id="fig_background">
 				<image src="Images\20260218-TACT-Hero-Image-copy-1.png" alt="Three illustrated people using digital devices, including a smartphone and laptop, with cloud, gear, and Wi‑Fi icons above them, suggesting inclusive and connected online participation" /></figure></section>
 
@@ -29,14 +35,12 @@
 <list><item>How can we design <strong>digital archives</strong> that is accessible to <strong>BLV (Blind and Low Vision)</strong> users using <strong>immersive media technology?</strong></item>
 <item>How can we design <strong>digital archives</strong> that is accessible to <strong>DHH (Deaf and Hard of Hearing)</strong> using <strong>immersive media technology?</strong></item></list></section> -->
 
-		<section id="methodology"><heading level="2">Proposed Methodology</heading>
-<!--<paragraph>Participatory research and co-creation is a key aspect of our approach, we will work closely with community members with lived experience of disability to understand their needs and preferences. The objective is to holistically emphasize the values of inclusion and agency for disabled communities through continual acts of attunement, embodied adjustments and realignments of relationships between researchers and stakeholders, so that the communties drive the decision-making on design approaches and solutions (services, technologies, policy guidelines). The project will also iteratively co-design, prototype and evaluate inclusive and accessible AI and immersive media-based solutions for discovery, navigation and interpretation of audio-visual cultural heritage content, with a focus on creating engaging and meaningful experiences for users with disabilities.</paragraph>-->
-			<list>
-				<item>Co-design and evaluate accessible AI and immersive meadia tools for cultural heritage with people who have lived experience of disability</item>
-				<item>Focus on discovery, navigation and interpretation of audio-visual content</item>
-				<item>Aim for practical, engaging and meaningful experiences that improve inclusion and agency</item>
-			</list>
-		</section>
+		<section id="methodology"><heading level="2">Proposed Methodology</heading><!--<paragraph>Participatory research and co-creation is a key aspect of our approach, we will work closely with community members with lived experience of disability to understand their needs and preferences. The objective is to holistically emphasize the values of inclusion and agency for disabled communities through continual acts of attunement, embodied adjustments and realignments of relationships between researchers and stakeholders, so that the communties drive the decision-making on design approaches and solutions (services, technologies, policy guidelines). The project will also iteratively co-design, prototype and evaluate inclusive and accessible AI and immersive media-based solutions for discovery, navigation and interpretation of audio-visual cultural heritage content, with a focus on creating engaging and meaningful experiences for users with disabilities.</paragraph>-->
+<list><item>Co-design and evaluate accessible AI and immersive media tools for cultural heritage with people who have lived experience of disability</item>
+
+<item>Focus on discovery, navigation and interpretation of audio-visual content</item>
+	
+<item>Aim for practical, engaging and meaningful experiences that improve inclusion and agency</item></list></section>
 
 		<section id="next steps"><heading level="2">Timeline / Next steps</heading>
 			<figure id="fig_timeline">
