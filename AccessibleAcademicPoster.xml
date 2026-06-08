@@ -20,7 +20,10 @@
 
 	<content>
 		<section id="background"><heading level="2">Background</heading>
-<paragraph>Digitisation has a massive impact on the way heritage material is preserved, accessed and experienced. In the case of audio-visual collections from the Netherlands Institue of Sound &amp; Vision, a large portion of the collection that was stored on fragile carriers such as film, magnetic tape, and video tapes has been digitised over the past fifteen years and can now be accessed remotely. The Sound &amp; Vision collection chronicles historical events and illuminates the intricate relationship between media, society, and technological progress. Access to this collection is essential for citizens with disabilities to engage with their cultural heritage to foster a more inclusive society.</paragraph></section>
+<paragraph>Digitisation has a massive impact on the way heritage material is preserved, accessed and experienced. In the case of audio-visual collections from the Netherlands Institue of Sound &amp; Vision, a large portion of the collection that was stored on fragile carriers such as film, magnetic tape, and video tapes has been digitised over the past fifteen years and can now be accessed remotely. The Sound &amp; Vision collection chronicles historical events and illuminates the intricate relationship between media, society, and technological progress. Access to this collection is essential for citizens with disabilities to engage with their cultural heritage to foster a more inclusive society.</paragraph>
+			<figure id="fig_backgroung">
+				<image src="Images\20260218-TACT-Hero-Image-copy-1.png" alt="Three illustrated people using digital devices, including a smartphone and laptop, with cloud, gear, and Wi‑Fi icons above them, suggesting inclusive and connected online participation" />
+				<caption>Project Timeline overview</caption></figure></section>
 
 		<!--<section id="research questions"><heading level="2">Research Questions</heading>
 <paragraph><strong>How can we design digital museum archives that is accessible to BLV (Blind and Low Vision) and DHH (Deaf and Hard of Hearing) users at home and at the museum using immersive media technology?</strong></paragraph>
@@ -32,7 +35,7 @@
 
 		<section id="next steps"><heading level="2">Timeline / Next steps</heading>
 			<figure id="fig_timeline">
-				<image src="Images/timeline.png" alt="Timeline chart showing project phases from  year 1 through year 4. In year 1 &amp; 2, codesign activities are planned with blind and low vision people " />
+				<image src="Images/timeline.png" alt="Timeline chart showing project phases from  year 1 through year 4. In year 1 &amp; 2, codesign activities are planned with blind and low vision people followed by prototyping, evaluation and deriving guidelines, these activites repeate interatively. In year 3 &amp; 4, codesign activities are planned with deaf and hard or hearing people followed by prototyping, evaluate and derive guidelines, , these activites repeate interatively. Finally ending with the dissertation" />
 				<caption>Project Timeline overview</caption>
 			</figure>
 			<heading level="2" class="centered">From co-design to scalable technology for inclusive archival access</heading>
