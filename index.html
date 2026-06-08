@@ -237,11 +237,32 @@
 			// Handle Abstract
 			const abstract = xml.querySelector('abstract');
 			if (abstract) {
-				html += `
-				<section class="abstract" aria-label="Abstract">
-					<h2>${extractText(abstract, 'heading')}</h2>
-					<p>${extractText(abstract, 'paragraph')}</p>
-				</section>`;
+				html += `<section class="abstract" aria-label="Abstract">`;
+
+				// Optional: if it has a <heading> element
+				const heading = abstract.querySelector('heading');
+				if (heading) {
+					html += `<h2>${heading.innerHTML}</h2>`;
+				}
+
+				// Use the same logic as content sections
+				Array.from(abstract.children).forEach(child => {
+					if (child.tagName === 'heading') {
+						// Ignored because we manually handled it above or you can just handle it here
+					} 
+					else if (child.tagName === 'paragraph') {
+						html += `<p>${child.innerHTML}</p>`;
+					} 
+					else if (child.tagName === 'list') {
+						const listType = child.getAttribute('type') === 'ordered' ? 'ol' : 'ul';
+						html += `<${listType}>`;
+						child.querySelectorAll('item').forEach(item => {
+							html += `<li>${item.innerHTML}</li>`;
+						});
+						html += `</${listType}>`;
+					}
+				});
+				html += `</section>`;
 			}
 
 			// Handle Content Sections
